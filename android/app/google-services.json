@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "279683935201",
+    "project_id": "retro-radar-55d0e",
+    "storage_bucket": "retro-radar-55d0e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279683935201:android:ba79cb7559063c1195c0a0",
+        "android_client_info": {
+          "package_name": "com.example.retro_radar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiWXOC3ar3QdLH2AV5NIUz34otHqhkVa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
