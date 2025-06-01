@@ -27,7 +27,7 @@ class AuthBloc {
       // final result = await authService.signInWithCredencial(credential);
       // print('${result.user?.displayName ?? "No display name"}');
     } catch (error) {
-      print(error);
+      // print(error);
     }
   }
 
