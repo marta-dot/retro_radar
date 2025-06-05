@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:retro_radar/blocs/auth_bloc.dart';
-import 'package:retro_radar/screens/login.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'firebase_options.dart';
+import 'blocs/auth_bloc.dart';
+import 'screens/login.dart';
 
-void main() async {
-  //to sugeruje czat
-  WidgetsFlutterBinding.ensureInitialized(); // Musi być przed inicjalizacją Firebase
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    await dotenv.load();
+    print("Env loaded");
+  } catch (e) {
+    print("Error loading env: $e");
+  }
+
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print("Firebase initialized");
+  } catch (e) {
+    print("Error initializing Firebase: $e");
+  }
 
   runApp(const MyApp());
 }
@@ -17,22 +32,21 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Provider(
       create: (context) => AuthBloc(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Retro Radar',
         theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
+            seedColor: Colors.deepPurple,
             brightness: Brightness.dark,
           ),
         ),
-        home: LoginScreen(),
+        home: LoginScreen(), // lub MapScreen() jeśli testujesz mapę
       ),
     );
   }

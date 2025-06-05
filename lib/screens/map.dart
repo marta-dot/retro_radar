@@ -1,12 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
   @override
   State<MapScreen> createState() => _MapScreenState();
+}
+
+Future<void> _requestLocationPermission() async {
+  var status = await Permission.location.status;
+  if (!status.isGranted) {
+    final result = await Permission.location.request();
+    if (!result.isGranted) {
+      print('❌ Lokalizacja nie została przyznana.');
+    }
+  }
 }
 
 class _MapScreenState extends State<MapScreen> {
@@ -22,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    _loadStores();
+    _requestLocationPermission().then((_) => _loadStores());
   }
 
   Future<void> _loadStores() async {
