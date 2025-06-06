@@ -43,7 +43,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Image.asset(
+                        'assets/icon/Retro.png',
+                        width: 150, // Dopasuj rozmiar według potrzeb
+                        height: 150,
+                        fit: BoxFit.contain,
+                      ),
+                      const SizedBox(height: 30),
                       SignInButton(Buttons.Google, onPressed: _login),
+                      const SizedBox(height: 20),
                       TextButton(
                         child: Text("Skip"),
                         onPressed: () {
